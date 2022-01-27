@@ -6,3 +6,34 @@
 .page-total h2 {
   margin: 0 0 0 30px;
 }
+
+.home-loading img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+
+  position: absolute;
+  left: 35%;
+  top: 35%;
+  background-color: #000 !important;
+  background: #000 !important;
+}
+
+.page-total {
+  animation: animeLeft 1s ease;
+}
+
+.featuredHome {
+  animation: animeLeft 3s ease;
+}
+@keyframes animeLeft {
+  from {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: initial;
+    opacity: initial;
+  }
+}

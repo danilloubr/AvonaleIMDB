@@ -2,11 +2,8 @@ import React from "react";
 import "./MovieList.css";
 
 function MovieList({ item }) {
-  console.log("item", item);
-
   if (!item) return null;
 
-  console.log("itemL", item);
   return (
     <div className="movie-row">
       <div className="movie-list-area">

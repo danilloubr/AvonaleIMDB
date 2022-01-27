@@ -1,0 +1,52 @@
+header {
+  position: fixed;
+  z-index: 999;
+  inset: 0;
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all ease 1s;
+}
+
+.blackHeader {
+  background-color: #020916cd;
+}
+
+.logo {
+  height: 70px;
+  cursor: pointer;
+}
+.lupa {
+  height: 30px;
+  cursor: pointer;
+}
+.logo-profile {
+  height: 45px;
+  cursor: pointer;
+  padding-right: 20px;
+}
+
+.logo img,
+.lupa img,
+.logo-profile img {
+  height: 100%;
+}
+
+.input-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-search input {
+  min-width: 450px;
+  height: 40px;
+  width: 100%;
+  background-color: transparent;
+  border-color: rgb(184, 184, 184);
+  border-radius: 10px;
+  opacity: 0.6;
+
+  margin-right: 15px;
+}

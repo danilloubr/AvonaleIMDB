@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import MovieList from "../../components/MovieList";
 import MovieFeatured from "../../components/MovieFeatured";
 import { popularMovies } from "../../services/services";
+
+import Loading from "../../midia/LoadTime.gif";
 import "./Home.css";
+import Nav from "../../components/Nav";
 
 function Home() {
   const [movie, setMovie] = useState([]);
   const [featuredData, setFeaturedData] = useState(null);
+  const [blackHeader, setBlackHeader] = useState(false);
 
   useEffect(() => {
     const fetchLoad = async () => {
@@ -24,13 +28,44 @@ function Home() {
 
       setFeaturedData(chosen);
     };
-
-    fetchLoad();
+    setTimeout(fetchLoad, 1000);
+    setInterval(fetchLoad, 10000);
   }, []);
+
+  useEffect(() => {
+    const scroll = () => {
+      if (window.scrollY > 40) {
+        setBlackHeader(true);
+      } else {
+        setBlackHeader(false);
+      }
+    };
+
+    window.addEventListener("scroll", scroll);
+    return () => {
+      window.addEventListener("scroll", scroll);
+    };
+  }, []);
+
+  console.log("FEATUREDDATA", featuredData);
+
+  if (!featuredData) {
+    return (
+      <div className="home-loading">
+        <img src={Loading} alt="Loading" />
+      </div>
+    );
+  }
+
   return (
     <div className="page-total">
-      {featuredData && <MovieFeatured featuredData={featuredData} />}
-      <h2>Filmes mais populares</h2>
+      <Nav blackHeader={blackHeader} />
+      {featuredData && (
+        <div className="featuredHome">
+          <MovieFeatured featuredData={featuredData} />
+          <h2>Filmes mais populares</h2>
+        </div>
+      )}
       <section className="lists">
         {movie.map((item, key) => (
           <MovieList key={key} item={item} />

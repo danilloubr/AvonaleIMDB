@@ -77,3 +77,14 @@
   background-color: rgb(139, 18, 18);
   color: #fff;
 }
+
+@keyframes animeLeft {
+  from {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: initial;
+    opacity: initial;
+  }
+}
