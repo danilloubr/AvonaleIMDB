@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import MovieList from "../../components/MovieList";
 import MovieFeatured from "../../components/MovieFeatured";
 import { popularMovies } from "../../services/services";
+import SetaD from "../../midia/seta-direita.png";
+import SetaE from "../../midia/seta-esquerda.png";
 
 import Loading from "../../midia/LoadTime.gif";
 import "./Home.css";
@@ -11,6 +13,7 @@ function Home() {
   const [movie, setMovie] = useState([]);
   const [featuredData, setFeaturedData] = useState(null);
   const [blackHeader, setBlackHeader] = useState(false);
+  const [scrollX, setScrollX] = useState(-250);
 
   useEffect(() => {
     const fetchLoad = async () => {
@@ -57,6 +60,23 @@ function Home() {
     );
   }
 
+  const handleLeftArrow = () => {
+    let x = scrollX + Math.round(window.innerWidth / 2);
+    if (x > 0) {
+      x = 0;
+    }
+    setScrollX(x);
+  };
+  const handleRightArrow = () => {
+    console.log("LENGHT", movie.length);
+    let x = scrollX - Math.round(window.innerWidth / 2);
+    let listW = movie.length * 170;
+    if (window.innerWidth - listW > x) {
+      x = window.innerWidth - listW - 140;
+    }
+    setScrollX(x);
+  };
+
   return (
     <div className="page-total">
       <Nav blackHeader={blackHeader} />
@@ -66,7 +86,16 @@ function Home() {
           <h2>Filmes mais populares</h2>
         </div>
       )}
-      <section className="lists">
+      <div className="movie-left" onClick={handleLeftArrow}>
+        <img src={SetaE} alt="SetaE" style={{ maxWidth: "40px" }} />
+      </div>
+      <div className="movie-right" onClick={handleRightArrow}>
+        <img src={SetaD} alt="SetaD" style={{ maxWidth: "40px" }} />
+      </div>
+      <section
+        className="lists"
+        style={{ marginLeft: scrollX, transition: "all ease 0.5s" }}
+      >
         {movie.map((item, key) => (
           <MovieList key={key} item={item} />
         ))}

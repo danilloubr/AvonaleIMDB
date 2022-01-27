@@ -27,6 +27,40 @@
 .featuredHome {
   animation: animeLeft 3s ease;
 }
+
+.movie-left,
+.movie-right {
+  position: absolute;
+  width: 40px;
+  height: 255px;
+  background-color: #020916bb;
+
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.movie-left img,
+.movie-right img {
+  cursor: pointer;
+  transform: scale(0.8);
+  transition: all ease 0.5s;
+}
+.movie-left img:hover,
+.movie-right img:hover {
+  cursor: pointer;
+  transform: scale(1);
+}
+
+.movie-left {
+  left: 0;
+}
+
+.movie-right {
+  right: 0;
+}
+
 @keyframes animeLeft {
   from {
     transform: translateX(-40px);
