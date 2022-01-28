@@ -1,8 +1,9 @@
 import React from "react";
 import "./MovieFeatured.css";
 
-function MovieFeatured({ featuredData }) {
+function MovieFeatured({ featuredData, addFavorite }) {
   console.log("featuredDataAQUI", featuredData);
+  console.log("featuredID-AQUI", featuredData.id);
 
   return (
     <div className="animeLeft">
@@ -28,7 +29,12 @@ function MovieFeatured({ featuredData }) {
             <div className="featured-overview">{featuredData.overview}</div>
             <div className="featured-button">
               <button className="btn-watch">Assistir</button>
-              <button className="btn-favorites">Favoritos</button>
+              <button
+                className="btn-favorites"
+                onClick={() => addFavorite(featuredData)}
+              >
+                Favoritos
+              </button>
             </div>
           </div>
         </div>
