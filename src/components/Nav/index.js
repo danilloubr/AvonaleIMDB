@@ -5,7 +5,7 @@ import Lupa from "../../midia/lupa.png";
 import Favorito from "../../midia/favorito.png";
 import "./Nav.css";
 
-function Nav({ blackHeader }) {
+function Nav({ blackHeader, search, setSearch }) {
   const json = localStorage.getItem("FAVORITOS");
   const favorite = JSON.parse(json);
 
@@ -16,12 +16,15 @@ function Nav({ blackHeader }) {
         <img src={Logo} alt="LogoAvonale" />
       </div>
       <div className="input-search">
-        <input></input>
+        <input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        ></input>
         <img className="lupa" src={Lupa} alt="LogoAvonale" />
       </div>
 
       <div className="logo-profile">
-        {favorite && (
+        {favorite.length > 0 && (
           <img
             className="favorito"
             src={Favorito}

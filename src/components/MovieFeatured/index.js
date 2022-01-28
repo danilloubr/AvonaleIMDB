@@ -2,15 +2,14 @@ import React from "react";
 import "./MovieFeatured.css";
 
 function MovieFeatured({ featuredData, addFavorite }) {
-  console.log("featuredDataAQUI", featuredData);
-  console.log("featuredID-AQUI", featuredData.id);
-
+  console.log("FEATURED MOVIE", featuredData);
   return (
     <div className="animeLeft">
       <section
         className="featured"
         style={{
           backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
           backgroundImage: `url(https://image.tmdb.org/t/p/original${featuredData.backdrop_path})`,
         }}
@@ -28,7 +27,7 @@ function MovieFeatured({ featuredData, addFavorite }) {
             </div>
             <div className="featured-overview">{featuredData.overview}</div>
             <div className="featured-button">
-              <button className="btn-watch">Assistir</button>
+              <button className="btn-watch">Mais Informações</button>
               <button
                 className="btn-favorites"
                 onClick={() => addFavorite(featuredData)}

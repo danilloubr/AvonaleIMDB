@@ -1,21 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import MovieList from "../../components/MovieList";
 import MovieFeatured from "../../components/MovieFeatured";
+
 import { popularMovies } from "../../services/services";
 import SetaD from "../../midia/seta-direita.png";
 import SetaE from "../../midia/seta-esquerda.png";
+// import { Modal } from "react-responsive-modal";
 
 import Loading from "../../midia/LoadTime.gif";
 import "./Home.css";
 import Nav from "../../components/Nav";
+import Modal from "react-responsive-modal";
 
 function Home() {
   const [movie, setMovie] = useState([]);
+  const [movieModal, setMovieModal] = useState(null);
   const [featuredData, setFeaturedData] = useState(null);
   const [blackHeader, setBlackHeader] = useState(false);
   const [favorite, setFavorite] = useState([]);
-  const [scrollX, setScrollX] = useState(-250);
+  const [scrollX, setScrollX] = useState(0);
   const [scrollXB, setScrollXB] = useState(0);
+  const [seacrh, setSearch] = useState("");
+  const [open, setOpen] = useState(false);
+
+  console.log("estado", open);
 
   useEffect(() => {
     const fetchLoad = async () => {
@@ -27,14 +35,14 @@ function Home() {
       const randomChosen = Math.floor(Math.random() * (results.length - 1));
       const chosen = results[randomChosen];
       // console.log("randomChosen", randomChosen);
-      console.log("CHOSEN", chosen);
+      // console.log("CHOSEN", chosen);
       // console.log("results", results);
       // console.log("resp", resp);
 
       setFeaturedData(chosen);
     };
     setTimeout(fetchLoad, 1000);
-    setInterval(fetchLoad, 10000);
+    // setInterval(fetchLoad, 10000);
   }, []);
 
   useEffect(() => {
@@ -57,7 +65,7 @@ function Home() {
       localStorage.setItem("FAVORITOS", "[]");
   }, []);
 
-  console.log("FEATUREDDATA", featuredData);
+  // console.log("FEATUREDDATA", featuredData);
 
   if (!featuredData) {
     return (
@@ -103,11 +111,11 @@ function Home() {
   };
 
   const addFavorite = (filme) => {
-    console.log("FILMEDENTRO", filme);
-    console.log("MOVIEAQUI", movie);
-    console.log("FAVORITOSDENTRO", favorite);
+    // console.log("FILMEDENTRO", filme);
+    // console.log("MOVIEAQUI", movie);
+    // console.log("FAVORITOSDENTRO", favorite);
     const movieExist = favorite.find((item) => item.id === filme.id);
-    console.log("MOVIEEXISTE", movieExist);
+    // console.log("MOVIEEXISTE", movieExist);
     if (!movieExist) {
       setFavorite([...favorite, filme]);
       localStorage.setItem("FAVORITOS", JSON.stringify([...dataJson, filme]));
@@ -120,65 +128,105 @@ function Home() {
     }
   };
 
+  const openModal = (filme) => {
+    console.log("FILME CLICADO", filme);
+
+    const movieModal = movie.find((item) => item.id === filme.id);
+    console.log("MOVIE MODAL", movieModal);
+    setMovieModal(movieModal);
+    setOpen(true);
+  };
+  const closeModal = () => {
+    setOpen(false);
+  };
+
   const data = localStorage.getItem("FAVORITOS");
   const dataJson = JSON.parse(data);
-  console.log("DATA JSON", dataJson);
+  // console.log("DATA JSON", dataJson);
 
   const listFavorites = [...dataJson];
-  console.log("LIST FAVORITAAA", listFavorites);
+  // console.log("LIST FAVORITAAA", listFavorites);
 
   return (
-    <div className="page-total">
-      <Nav blackHeader={blackHeader} />
-      {featuredData && (
-        <div className="featuredHome">
-          <MovieFeatured
-            featuredData={featuredData}
-            addFavorite={addFavorite}
-          />
-          <h2>Filmes mais populares</h2>
+    <Fragment>
+      <div className="page-total">
+        <Nav blackHeader={blackHeader} search={seacrh} setSearch={setSearch} />
+        {featuredData && (
+          <div className="featuredHome">
+            <MovieFeatured
+              featuredData={featuredData}
+              addFavorite={addFavorite}
+            />
+            <h2>Filmes mais populares</h2>
+          </div>
+        )}
+        <div className="movie-left" onClick={handleLeftArrow}>
+          <img src={SetaE} alt="SetaE" style={{ maxWidth: "40px" }} />
         </div>
-      )}
-      <div className="movie-left" onClick={handleLeftArrow}>
-        <img src={SetaE} alt="SetaE" style={{ maxWidth: "40px" }} />
-      </div>
-      <div className="movie-right" onClick={handleRightArrow}>
-        <img src={SetaD} alt="SetaD" style={{ maxWidth: "40px" }} />
-      </div>
-      <section
-        className="lists"
-        style={{ marginLeft: scrollX, transition: "all ease 1s" }}
-      >
-        {movie.map((item, key) => (
-          <MovieList key={key} item={item} addFavorite={addFavorite} />
-        ))}
-      </section>
-
-      {listFavorites.length > 0 && (
-        <div>
-          <h2>Meus Filmes Favoritos</h2>
-          {listFavorites.length > 7 && (
-            <div>
-              <div className="movie-left" onClick={handleLeftArrowB}>
-                <img src={SetaE} alt="SetaE" style={{ maxWidth: "40px" }} />
-              </div>
-              <div className="movie-right" onClick={handleRightArrowB}>
-                <img src={SetaD} alt="SetaD" style={{ maxWidth: "40px" }} />
-              </div>
-            </div>
-          )}
-          <section
-            className="lists"
-            style={{ marginLeft: scrollXB, transition: "all ease 1s" }}
-          >
-            {listFavorites &&
-              listFavorites.map((item, key) => (
-                <MovieList key={key} item={item} />
+        <div className="movie-right" onClick={handleRightArrow}>
+          <img src={SetaD} alt="SetaD" style={{ maxWidth: "40px" }} />
+        </div>
+        <section
+          className="lists"
+          style={{ marginLeft: scrollX, transition: "all ease 1s" }}
+        >
+          {movie &&
+            movie
+              .filter((item) =>
+                item.title.toLowerCase().includes(seacrh?.toLowerCase())
+              )
+              .map((item, key) => (
+                <MovieList
+                  key={key}
+                  item={item}
+                  addFavorite={addFavorite}
+                  openModal={openModal}
+                />
               ))}
-          </section>
-        </div>
-      )}
-    </div>
+        </section>
+
+        {listFavorites.length > 0 && (
+          <div>
+            <h2>Meus Filmes Favoritos</h2>
+            {listFavorites.length > 7 && (
+              <div>
+                <div className="movie-left" onClick={handleLeftArrowB}>
+                  <img src={SetaE} alt="SetaE" style={{ maxWidth: "40px" }} />
+                </div>
+                <div className="movie-right" onClick={handleRightArrowB}>
+                  <img src={SetaD} alt="SetaD" style={{ maxWidth: "40px" }} />
+                </div>
+              </div>
+            )}
+            <section
+              className="lists"
+              style={{ marginLeft: scrollXB, transition: "all ease 1s" }}
+            >
+              {listFavorites &&
+                listFavorites.map((item, key) => (
+                  <MovieList
+                    key={key}
+                    item={item}
+                    addFavorite={addFavorite}
+                    openModal={openModal}
+                  />
+                ))}
+            </section>
+          </div>
+        )}
+      </div>
+      <Modal
+        open={open}
+        onClose={closeModal}
+        center
+        classNames={{
+          overlay: "customOverlay",
+          modal: "customModal",
+        }}
+      >
+        <MovieFeatured featuredData={movieModal} addFavorite={addFavorite} />
+      </Modal>
+    </Fragment>
   );
 }
 

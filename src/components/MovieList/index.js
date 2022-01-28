@@ -1,8 +1,14 @@
 import React from "react";
 import "./MovieList.css";
 
-function MovieList({ item }) {
+function MovieList({ item, openModal }) {
   if (!item) return null;
+
+  // console.log("ITEM LIST", item);
+
+  function openMovie(item) {
+    openModal(item);
+  }
 
   return (
     <div className="movie-row">
@@ -12,6 +18,7 @@ function MovieList({ item }) {
             <img
               src={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
               alt={item.original_title}
+              onClick={() => openMovie(item)}
             />
           </div>
         </div>
