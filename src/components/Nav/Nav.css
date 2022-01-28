@@ -46,10 +46,11 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 115px;
 }
 
 .input-search input {
-  min-width: 450px;
+  min-width: 600px;
   height: 40px;
   width: 100%;
   background-color: transparent;

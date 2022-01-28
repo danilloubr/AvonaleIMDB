@@ -13,7 +13,9 @@ function Nav({ blackHeader, search, setSearch }) {
   return (
     <header className={blackHeader ? "blackHeader" : ""}>
       <div className="logo">
-        <img src={Logo} alt="LogoAvonale" />
+        <a href="/">
+          <img src={Logo} alt="LogoAvonale" />
+        </a>
       </div>
       <div className="input-search">
         <input
@@ -32,8 +34,9 @@ function Nav({ blackHeader, search, setSearch }) {
             title="Clique para ver a lista de filmes"
           />
         )}
-
-        <img src={LogoProfile} alt="LogoProfile" />
+        <a href="/favorite">
+          <img src={LogoProfile} alt="LogoProfile" />
+        </a>
       </div>
     </header>
   );

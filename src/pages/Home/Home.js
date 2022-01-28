@@ -5,7 +5,6 @@ import MovieFeatured from "../../components/MovieFeatured";
 import { popularMovies } from "../../services/services";
 import SetaD from "../../midia/seta-direita.png";
 import SetaE from "../../midia/seta-esquerda.png";
-// import { Modal } from "react-responsive-modal";
 
 import Loading from "../../midia/LoadTime.gif";
 import "./Home.css";
@@ -42,7 +41,7 @@ function Home() {
       setFeaturedData(chosen);
     };
     setTimeout(fetchLoad, 1000);
-    // setInterval(fetchLoad, 10000);
+    setInterval(fetchLoad, 10000);
   }, []);
 
   useEffect(() => {
