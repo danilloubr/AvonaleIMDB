@@ -74,8 +74,15 @@
 }
 
 .btn-favorites {
-  background-color: rgb(139, 18, 18);
+  background-color: #007a16;
   color: #fff;
+}
+
+.sem-filmes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
 }
 
 @keyframes animeLeft {

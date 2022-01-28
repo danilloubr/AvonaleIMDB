@@ -1,4 +1,5 @@
 import React, { useEffect, useState, Fragment } from "react";
+
 import MovieList from "../../components/MovieList";
 import MovieFeatured from "../../components/MovieFeatured";
 
@@ -114,14 +115,15 @@ function Home() {
     // console.log("MOVIEAQUI", movie);
     // console.log("FAVORITOSDENTRO", favorite);
     const movieExist = favorite.find((item) => item.id === filme.id);
+    const movieExistFavorite = dataJson.find((item) => item.id === filme.id);
     // console.log("MOVIEEXISTE", movieExist);
-    if (!movieExist) {
-      setFavorite([...favorite, filme]);
+    if (!movieExist && !movieExistFavorite) {
+      setFavorite([...dataJson, filme]);
       localStorage.setItem("FAVORITOS", JSON.stringify([...dataJson, filme]));
 
       alert("Filme adicionado com sucesso!");
     } else {
-      setFavorite([...favorite]);
+      setFavorite([...dataJson]);
       localStorage.setItem("FAVORITOS", JSON.stringify([...dataJson]));
       alert("Filme já existe!");
     }
@@ -135,6 +137,7 @@ function Home() {
     setMovieModal(movieModal);
     setOpen(true);
   };
+
   const closeModal = () => {
     setOpen(false);
   };

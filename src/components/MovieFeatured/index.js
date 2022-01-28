@@ -22,7 +22,7 @@ function MovieFeatured({ featuredData, addFavorite }) {
                 {featuredData.vote_average} pontos
               </div>
               <div className="featured-info-year">
-                {featuredData.release_date.slice(0, 4)}
+                {featuredData && featuredData.release_date.slice(0, 4)}
               </div>
             </div>
             <div className="featured-overview">{featuredData.overview}</div>
