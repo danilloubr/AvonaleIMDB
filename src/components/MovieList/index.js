@@ -4,8 +4,6 @@ import "./MovieList.css";
 function MovieList({ item, openModal }) {
   if (!item) return null;
 
-  // console.log("ITEM LIST", item);
-
   function openMovie(item) {
     openModal(item);
   }

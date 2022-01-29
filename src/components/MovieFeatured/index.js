@@ -1,10 +1,9 @@
 import React from "react";
+import { toast } from "react-toastify";
 
 import "./MovieFeatured.css";
 
 function MovieFeatured({ featuredData, addFavorite, closeModal }) {
-  console.log("FEATURED MOVIE", featuredData);
-
   const json = localStorage.getItem("FAVORITOS");
   const favorite = JSON.parse(json);
 
@@ -14,7 +13,7 @@ function MovieFeatured({ featuredData, addFavorite, closeModal }) {
     const newList = favorite.filter((movie) => movie.id !== item.id);
     localStorage.setItem("FAVORITOS", JSON.stringify(newList));
     closeModal();
-    alert("Filme removido com Sucesso!");
+    toast("Filme removido com Sucesso!");
   }
 
   return (

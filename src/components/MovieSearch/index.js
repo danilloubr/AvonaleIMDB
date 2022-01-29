@@ -1,8 +1,9 @@
 import React, { Fragment, useState } from "react";
 import { searchItem } from "../../services/services";
 import "./MovieSearch.css";
+import Background from "../../midia/background-search.jpg";
 
-function MovieSearch({ openModal }) {
+function MovieSearch({ openModal, search }) {
   const [movie, setMovie] = useState("");
   const [movieSearch, setMovieSearch] = useState([]);
 
@@ -10,10 +11,11 @@ function MovieSearch({ openModal }) {
     e.preventDefault();
     const item = await searchItem(movie);
     const { results } = item.data;
-    console.log("ITEM DIGITADO", movie);
-    console.log("ITEM PESQUISADO", results);
 
     setMovieSearch(results);
+
+    let element = document.getElementById("animeLeft");
+    element.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -22,15 +24,14 @@ function MovieSearch({ openModal }) {
         <div
           className="search-background"
           style={{
-            opacity: "0.8",
-
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
-            backgroundImage:
-              "url(https://cdn.falauniversidades.com.br/wp-content/uploads/2018/03/fala-universidades-netflix-3.jpg)",
+            backgroundImage: `url(${Background})`,
           }}
         >
+          <h1>Não achou seu filme?</h1>
+          <h2>Nós podemos achar ele para você :)</h2>
           <form onSubmit={searchMovie}>
             <input
               type="text"
@@ -40,18 +41,23 @@ function MovieSearch({ openModal }) {
           </form>
         </div>
         {movieSearch.length > 0 && (
-          <section className="animeLeft">
+          <section className="animeLeft" id="animeLeft" name="animeLeft">
             <div className="page-total-search">
               <div className="movie-item-search">
-                {movieSearch.map((item, key) => (
-                  <div className="teste" key={key}>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
-                      alt={item.original_title}
-                      onClick={() => openModal(item)}
-                    />
-                  </div>
-                ))}
+                {movieSearch &&
+                  movieSearch
+                    .filter((item) =>
+                      item.title.toLowerCase().includes(search?.toLowerCase())
+                    )
+                    .map((item, key) => (
+                      <div className="movie-hover" key={key}>
+                        <img
+                          src={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
+                          alt={item.original_title}
+                          onClick={() => openModal(item)}
+                        />
+                      </div>
+                    ))}
               </div>
             </div>
           </section>

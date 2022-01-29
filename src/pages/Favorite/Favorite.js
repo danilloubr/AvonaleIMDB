@@ -10,7 +10,6 @@ function Favorite() {
   const json = localStorage.getItem("FAVORITOS");
   const favorite = JSON.parse(json);
 
-  console.log("FAVORITO NAV", favorite);
   const history = useHistory();
 
   const openModal = (item) => {
@@ -20,7 +19,6 @@ function Favorite() {
     setOpen(false);
     history.push("/favorite");
   };
-  console.log("LENGTH FAVORITE", favorite.length);
 
   return (
     <Fragment>

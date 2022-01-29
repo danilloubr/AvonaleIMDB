@@ -12,6 +12,7 @@ import "./Home.css";
 import Nav from "../../components/Nav";
 import Modal from "react-responsive-modal";
 import MovieSearch from "../../components/MovieSearch";
+import { toast } from "react-toastify";
 
 function Home() {
   const [movie, setMovie] = useState([]);
@@ -21,29 +22,23 @@ function Home() {
   const [favorite, setFavorite] = useState([]);
   const [scrollX, setScrollX] = useState(0);
   const [scrollXB, setScrollXB] = useState(0);
-  const [seacrh, setSearch] = useState("");
+  const [search, setSearch] = useState("");
   const [open, setOpen] = useState(false);
-
-  console.log("estado", open);
 
   useEffect(() => {
     const fetchLoad = async () => {
       const { data: resp } = await popularMovies();
       const { results } = resp;
-      console.log(results);
+
       setMovie(results);
 
       const randomChosen = Math.floor(Math.random() * (results.length - 1));
       const chosen = results[randomChosen];
-      // console.log("randomChosen", randomChosen);
-      // console.log("CHOSEN", chosen);
-      // console.log("results", results);
-      // console.log("resp", resp);
 
       setFeaturedData(chosen);
     };
     setTimeout(fetchLoad, 1000);
-    // setInterval(fetchLoad, 10000);
+    setInterval(fetchLoad, 10000);
   }, []);
 
   useEffect(() => {
@@ -65,8 +60,6 @@ function Home() {
     if (localStorage.getItem("FAVORITOS") === null)
       localStorage.setItem("FAVORITOS", "[]");
   }, []);
-
-  // console.log("FEATUREDDATA", featuredData);
 
   if (!featuredData) {
     return (
@@ -112,30 +105,23 @@ function Home() {
   };
 
   const addFavorite = (filme) => {
-    // console.log("FILMEDENTRO", filme);
-    // console.log("MOVIEAQUI", movie);
-    // console.log("FAVORITOSDENTRO", favorite);
     const movieExist = favorite.find((item) => item.id === filme.id);
     const movieExistFavorite = dataJson.find((item) => item.id === filme.id);
-    // console.log("MOVIEEXISTE", movieExist);
+
     if (!movieExist && !movieExistFavorite) {
       setFavorite([...dataJson, filme]);
       localStorage.setItem("FAVORITOS", JSON.stringify([...dataJson, filme]));
 
-      alert("Filme adicionado com sucesso!");
+      toast("Filme adicionado com sucesso!");
     } else {
       setFavorite([...dataJson]);
       localStorage.setItem("FAVORITOS", JSON.stringify([...dataJson]));
-      alert("Filme já existe!");
+      toast("Você já tem esse filme nos favoritos!");
     }
   };
 
   const openModal = (filme) => {
-    console.log("FILME CLICADO", filme);
-
-    const movieModal = movie.find((item) => item.id === filme.id);
-    console.log("MOVIE MODAL", movieModal);
-    setMovieModal(movieModal);
+    setMovieModal(filme);
     setOpen(true);
   };
 
@@ -145,15 +131,13 @@ function Home() {
 
   const data = localStorage.getItem("FAVORITOS");
   const dataJson = JSON.parse(data);
-  // console.log("DATA JSON", dataJson);
 
   const listFavorites = [...dataJson];
-  // console.log("LIST FAVORITAAA", listFavorites);
 
   return (
     <Fragment>
       <div className="page-total">
-        <Nav blackHeader={blackHeader} search={seacrh} setSearch={setSearch} />
+        <Nav blackHeader={blackHeader} search={search} setSearch={setSearch} />
         {featuredData && (
           <div className="featuredHome">
             <MovieFeatured
@@ -176,7 +160,7 @@ function Home() {
           {movie &&
             movie
               .filter((item) =>
-                item.title.toLowerCase().includes(seacrh?.toLowerCase())
+                item.title.toLowerCase().includes(search?.toLowerCase())
               )
               .map((item, key) => (
                 <MovieList
@@ -215,7 +199,7 @@ function Home() {
                   />
                 ))}
             </section>
-            <MovieSearch openModal={openModal} />
+            <MovieSearch openModal={openModal} search={search} />
           </div>
         )}
       </div>

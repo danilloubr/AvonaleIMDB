@@ -9,7 +9,6 @@ function Nav({ blackHeader, search, setSearch }) {
   const json = localStorage.getItem("FAVORITOS");
   const favorite = JSON.parse(json);
 
-  console.log("FAVORITO NAV", favorite);
   return (
     <header className={blackHeader ? "blackHeader" : ""}>
       <div className="logo">
