@@ -75,13 +75,29 @@
   justify-content: center !important;
   align-items: center !important;
   background: transparent !important;
-  box-shadow: 4px 4px 5px 2px rgba(0, 0, 0, 0.25) !important;
+  /* box-shadow: 4px 4px 5px 2px rgb(0 0 0 / 25%) !important; */
   animation: animeLeft 1s ease !important;
-  border-radius: 100px !important;
+  /* border-radius: 100px !important; */
   position: absolute !important;
   min-width: 500px !important;
-  min-height: 700px !important;
+  /* min-height: 700px !important; */
   padding: 0 !important;
+}
+
+.react-responsive-modal-closeButton {
+  position: absolute;
+  top: 65px !important;
+  right: 14px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+  display: flex;
+}
+
+.animeLeft {
+  width: inherit;
+  height: inherit;
 }
 
 @keyframes animeLeft {

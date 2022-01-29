@@ -42,7 +42,7 @@ function Home() {
       setFeaturedData(chosen);
     };
     setTimeout(fetchLoad, 1000);
-    setInterval(fetchLoad, 10000);
+    // setInterval(fetchLoad, 10000);
   }, []);
 
   useEffect(() => {
@@ -226,7 +226,11 @@ function Home() {
           modal: "customModal",
         }}
       >
-        <MovieFeatured featuredData={movieModal} addFavorite={addFavorite} />
+        <MovieFeatured
+          featuredData={movieModal}
+          addFavorite={addFavorite}
+          closeModal={closeModal}
+        />
       </Modal>
     </Fragment>
   );

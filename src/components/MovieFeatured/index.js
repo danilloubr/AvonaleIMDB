@@ -1,8 +1,22 @@
 import React from "react";
+import Favorite from "../../pages/Favorite/Favorite";
 import "./MovieFeatured.css";
 
-function MovieFeatured({ featuredData, addFavorite }) {
+function MovieFeatured({ featuredData, addFavorite, closeModal }) {
   console.log("FEATURED MOVIE", featuredData);
+
+  const json = localStorage.getItem("FAVORITOS");
+  const favorite = JSON.parse(json);
+
+  const existItem = favorite.find((item) => item.id === featuredData.id);
+
+  function removeItem(item) {
+    const newList = favorite.filter((movie) => movie.id !== item.id);
+    localStorage.setItem("FAVORITOS", JSON.stringify(newList));
+    closeModal();
+    alert("Filme removido com Sucesso!");
+  }
+
   return (
     <div className="animeLeft">
       <section
@@ -28,11 +42,18 @@ function MovieFeatured({ featuredData, addFavorite }) {
             <div className="featured-overview">{featuredData.overview}</div>
             <div className="featured-button">
               <button className="btn-watch">Mais Informações</button>
+
               <button
-                className="btn-favorites"
-                onClick={() => addFavorite(featuredData)}
+                className={existItem ? "btn-remove" : "btn-favorites"}
+                onClick={
+                  existItem
+                    ? () => removeItem(featuredData)
+                    : () => addFavorite(featuredData)
+                }
               >
-                Favoritos
+                {existItem
+                  ? "Remover dos Favoritos"
+                  : "Adicionar aos Favoritos"}
               </button>
             </div>
           </div>
