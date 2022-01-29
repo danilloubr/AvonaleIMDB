@@ -11,6 +11,7 @@ import Loading from "../../midia/LoadTime.gif";
 import "./Home.css";
 import Nav from "../../components/Nav";
 import Modal from "react-responsive-modal";
+import MovieSearch from "../../components/MovieSearch";
 
 function Home() {
   const [movie, setMovie] = useState([]);
@@ -214,6 +215,7 @@ function Home() {
                   />
                 ))}
             </section>
+            <MovieSearch openModal={openModal} />
           </div>
         )}
       </div>

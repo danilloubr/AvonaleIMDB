@@ -1,0 +1,80 @@
+.search-background {
+  width: 100%;
+  height: 400px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.search-background form,
+input {
+  max-width: 600px;
+  height: 40px;
+  width: 100%;
+
+  border-color: rgb(2, 26, 87) !important;
+  border-radius: 10px;
+
+  color: rgb(2, 2, 2);
+  margin-right: 15px;
+  padding-left: 10px;
+  font-weight: bold;
+}
+.animeLeft {
+  animation: animeLeft 2s ease !important;
+}
+
+.page-total-search {
+  display: flex;
+  flex-wrap: wrap;
+
+  align-content: center;
+  justify-content: space-around;
+
+  width: 100%;
+}
+
+.movie-item-search {
+  display: grid;
+  grid-template-columns: 180px 180px 180px;
+  border-radius: 10px;
+  margin: 100px;
+  transition: all 0.2s ease-in-out;
+  width: 400px;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie-item-search img {
+  width: 100%;
+  transform: scale(0.9);
+  transition: all ease 0.4s;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 250px;
+}
+.movie-item-favorite h1 {
+  font-size: 20px;
+  padding-left: 10px;
+}
+
+.movie-item-search img:hover {
+  transform: scale(1);
+}
+
+.teste:hover {
+  z-index: 9999 !important;
+}
+
+@keyframes animeLeft {
+  from {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: initial;
+    opacity: initial;
+  }
+}

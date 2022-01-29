@@ -6,3 +6,10 @@ const LANGUAGE = "pt-BR";
 export const popularMovies = () => {
   return client.get(`/movie/popular?api_key=${API_KEY}&language=${LANGUAGE}`);
 };
+export const searchItem = (item) => {
+  let movie = item;
+  let movieEncoded = encodeURI(movie);
+  return client.get(
+    `/search/movie?api_key=${API_KEY}&language=${LANGUAGE}&query=${movieEncoded}`
+  );
+};

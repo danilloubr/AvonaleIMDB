@@ -1,5 +1,5 @@
 import React from "react";
-import Favorite from "../../pages/Favorite/Favorite";
+
 import "./MovieFeatured.css";
 
 function MovieFeatured({ featuredData, addFavorite, closeModal }) {
@@ -41,7 +41,7 @@ function MovieFeatured({ featuredData, addFavorite, closeModal }) {
             </div>
             <div className="featured-overview">{featuredData.overview}</div>
             <div className="featured-button">
-              <button className="btn-watch">Mais Informações</button>
+              <button className="btn-watch">Assistir Trailer</button>
 
               <button
                 className={existItem ? "btn-remove" : "btn-favorites"}
