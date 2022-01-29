@@ -1,4 +1,5 @@
 import React from "react";
+
 import { toast } from "react-toastify";
 
 import "./MovieFeatured.css";
@@ -14,6 +15,18 @@ function MovieFeatured({ featuredData, addFavorite, closeModal }) {
     localStorage.setItem("FAVORITOS", JSON.stringify(newList));
     closeModal();
     toast("Filme removido com Sucesso!");
+  }
+  console.log("FEATURED", featuredData);
+
+  function whatchTrailer(item) {
+    const name = item.title;
+    console.log("NAME", name);
+
+    // window.location.href = `https://www.youtube.com/results?search_query=${name}`;
+    window.open(
+      `https://www.youtube.com/results?search_query=${name}`,
+      "_blank"
+    );
   }
 
   return (
@@ -40,7 +53,12 @@ function MovieFeatured({ featuredData, addFavorite, closeModal }) {
             </div>
             <div className="featured-overview">{featuredData.overview}</div>
             <div className="featured-button">
-              <button className="btn-watch">Assistir Trailer</button>
+              <button
+                className="btn-watch"
+                onClick={() => whatchTrailer(featuredData)}
+              >
+                Assistir Trailer
+              </button>
 
               <button
                 className={existItem ? "btn-remove" : "btn-favorites"}
