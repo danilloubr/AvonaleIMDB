@@ -20,11 +20,9 @@ function MovieFeatured({ featuredData, addFavorite, closeModal }) {
 
   function whatchTrailer(item) {
     const name = item.title;
-    console.log("NAME", name);
 
-    // window.location.href = `https://www.youtube.com/results?search_query=${name}`;
     window.open(
-      `https://www.youtube.com/results?search_query=${name}`,
+      `https://www.youtube.com/results?search_query=${name} trailer legendado`,
       "_blank"
     );
   }
