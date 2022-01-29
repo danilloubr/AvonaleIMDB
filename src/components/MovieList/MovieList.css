@@ -1,0 +1,25 @@
+.movie-row {
+  margin-bottom: 30px;
+}
+
+.movie-list-area {
+  overflow-x: hidden;
+  padding-left: 5px;
+}
+
+.movie-item {
+  display: inline-block;
+  width: 170px;
+  cursor: pointer;
+}
+
+.movie-item img {
+  width: 100%;
+  transform: scale(0.9);
+  transition: all ease 0.4s;
+  border-radius: 10px;
+}
+
+.movie-item img:hover {
+  transform: scale(1);
+}

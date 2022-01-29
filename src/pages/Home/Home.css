@@ -1,0 +1,112 @@
+.lists {
+  display: flex;
+  overflow-x: hidden;
+}
+
+.page-total h2 {
+  margin: 0 0 0 30px;
+}
+
+.home-loading {
+  background-color: #000 !important;
+  width: 100vw;
+  height: 100vh;
+}
+.home-loading img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+
+  position: absolute;
+  inset: 35% 35%;
+
+  z-index: 99;
+}
+
+.page-total {
+  animation: animeLeft 1s ease;
+}
+
+.featuredHome {
+  animation: animeLeft 3s ease;
+}
+
+.movie-left,
+.movie-right {
+  position: absolute;
+  width: 40px;
+  height: 255px;
+  background-color: #020916bb;
+
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.movie-left img,
+.movie-right img {
+  cursor: pointer;
+  transform: scale(0.8);
+  transition: all ease 0.5s;
+}
+.movie-left img:hover,
+.movie-right img:hover {
+  transform: scale(1);
+}
+
+.movie-left {
+  left: 0;
+}
+
+.movie-right {
+  right: 0;
+}
+
+.customOverlay {
+  background: #202020e3 !important;
+}
+
+.customModal {
+  display: flex !important;
+  inset: 13% 18% !important;
+  justify-content: center !important;
+  align-items: center !important;
+  background: transparent !important;
+  /* box-shadow: 4px 4px 5px 2px rgb(0 0 0 / 25%) !important; */
+  animation: animeLeft 1s ease !important;
+  /* border-radius: 100px !important; */
+  position: absolute !important;
+  min-width: 500px !important;
+  /* min-height: 700px !important; */
+  padding: 0 !important;
+}
+
+.react-responsive-modal-closeButton {
+  position: absolute;
+  top: 65px !important;
+  right: 14px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+  display: flex;
+}
+
+.animeLeft {
+  width: inherit;
+  height: inherit;
+}
+
+@keyframes animeLeft {
+  from {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: initial;
+    opacity: initial;
+  }
+}

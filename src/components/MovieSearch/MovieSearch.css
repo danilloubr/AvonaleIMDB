@@ -1,0 +1,89 @@
+.search-background {
+  width: 100%;
+  height: 400px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.search-background h1 {
+  font-size: 80px;
+  margin: -30px 0px 0px 0px;
+  font-weight: 400;
+  filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 1));
+}
+.search-background h2 {
+  font-size: 20px;
+  margin: 0px 0px 20px 0px;
+  filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 1));
+}
+.search-background form,
+input {
+  max-width: 600px;
+  height: 40px;
+  width: 100%;
+
+  border-color: rgb(2, 26, 87) !important;
+  border-radius: 10px;
+
+  color: rgb(2, 2, 2);
+  margin-right: 15px;
+  padding-left: 10px;
+  font-weight: bold;
+  filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 1));
+}
+.animeLeft {
+  animation: animeLeft 2s ease !important;
+}
+
+.page-total-search {
+  display: flex;
+  flex-wrap: wrap;
+
+  align-content: center;
+  justify-content: space-around;
+
+  width: 100%;
+}
+
+.movie-item-search {
+  display: grid;
+  grid-template-columns: 180px 180px 180px;
+  border-radius: 10px;
+  margin: 100px;
+  transition: all 0.2s ease-in-out;
+  width: 400px;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie-item-search img {
+  width: 100%;
+  transform: scale(0.9);
+  transition: all ease 0.4s;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 250px;
+}
+
+.movie-item-search img:hover {
+  transform: scale(1);
+}
+
+.movie-hover:hover {
+  z-index: 2;
+}
+
+@keyframes animeLeft {
+  from {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: initial;
+    opacity: initial;
+  }
+}
