@@ -21,7 +21,7 @@ function MovieSearch({ openModal, search }) {
       element.scrollIntoView({ behavior: "smooth" });
     } else {
       toast(
-        "Não encontramos o seu filme, porfavor veja se está digitado corretamente."
+        "Não encontramos o seu filme, por favor veja se está digitado corretamente."
       );
     }
   };
