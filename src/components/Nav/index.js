@@ -26,12 +26,14 @@ function Nav({ blackHeader, search, setSearch }) {
 
       <div className="logo-profile">
         {favorite.length > 0 && (
-          <img
-            className="favorito"
-            src={Favorito}
-            alt={""}
-            title="Clique para ver a lista de filmes"
-          />
+          <a href="/favorite">
+            <img
+              className="favorito"
+              src={Favorito}
+              alt={""}
+              title="Clique para ver a lista de filmes"
+            />
+          </a>
         )}
         <a href="/favorite">
           <img src={LogoProfile} alt="LogoProfile" />

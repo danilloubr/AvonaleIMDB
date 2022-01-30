@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import { searchItem } from "../../services/services";
 import "./MovieSearch.css";
 import Background from "../../midia/background-search.jpg";
+import { toast } from "react-toastify";
 
 function MovieSearch({ openModal, search }) {
   const [movie, setMovie] = useState("");
@@ -9,13 +10,20 @@ function MovieSearch({ openModal, search }) {
 
   const searchMovie = async (e) => {
     e.preventDefault();
+
     const item = await searchItem(movie);
     const { results } = item.data;
 
-    setMovieSearch(results);
+    if (results.length > 0) {
+      setMovieSearch(results);
 
-    let element = document.getElementById("animeLeft");
-    element.scrollIntoView({ behavior: "smooth" });
+      let element = document.getElementById("animeLeft");
+      element.scrollIntoView({ behavior: "smooth" });
+    } else {
+      toast(
+        "Não encontramos o seu filme, porfavor veja se está digitado corretamente."
+      );
+    }
   };
 
   return (
@@ -37,6 +45,7 @@ function MovieSearch({ openModal, search }) {
               type="text"
               value={movie}
               onChange={(e) => setMovie(e.target.value)}
+              placeholder="Digite aqui o nome do filme ..."
             />
           </form>
         </div>
