@@ -199,9 +199,9 @@ function Home() {
                   />
                 ))}
             </section>
-            <MovieSearch openModal={openModal} search={search} />
           </div>
         )}
+        <MovieSearch openModal={openModal} search={search} />
       </div>
       <Modal
         open={open}

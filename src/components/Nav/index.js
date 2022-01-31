@@ -16,29 +16,30 @@ function Nav({ blackHeader, search, setSearch }) {
           <img src={Logo} alt="LogoAvonale" />
         </a>
       </div>
-      <div className="input-search">
+      <div className="input-search-nav">
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         ></input>
         <img className="lupa" src={Lupa} alt="LogoAvonale" />
       </div>
+      <a href="/favorite">
+        <button className="btn-nav">
+          Favoritos
+          <div className="logo-profile">
+            {favorite.length > 0 && (
+              <img
+                className="favorito"
+                src={Favorito}
+                alt={""}
+                title="Clique para ver a lista de filmes"
+              />
+            )}
 
-      <div className="logo-profile">
-        {favorite.length > 0 && (
-          <a href="/favorite">
-            <img
-              className="favorito"
-              src={Favorito}
-              alt={""}
-              title="Clique para ver a lista de filmes"
-            />
-          </a>
-        )}
-        <a href="/favorite">
-          <img src={LogoProfile} alt="LogoProfile" />
-        </a>
-      </div>
+            <img src={LogoProfile} alt="LogoProfile" />
+          </div>
+        </button>
+      </a>
     </header>
   );
 }

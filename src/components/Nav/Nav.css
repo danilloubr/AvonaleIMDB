@@ -8,6 +8,12 @@ header {
   align-items: center;
   transition: all ease 1s;
 }
+header a {
+  border: none;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+}
 
 .blackHeader {
   background-color: #020916cd;
@@ -22,18 +28,21 @@ header {
   cursor: pointer;
 }
 .logo-profile .favorito {
-  height: 18px;
+  height: 17px;
   cursor: pointer;
   padding-left: 10px;
   z-index: 2;
   position: absolute;
+  top: 60px;
   right: 50px;
-  top: 50px;
 }
 .logo-profile {
-  height: 45px;
+  height: 60px;
   cursor: pointer;
-  padding-right: 20px;
+  /* padding-right: 20px; */
+  display: flex !important;
+  justify-content: space-around !important;
+  align-items: center !important;
 }
 
 .logo img,
@@ -42,23 +51,46 @@ header {
   height: 100%;
 }
 
-.input-search {
+.input-search-nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 115px;
+  margin: 0px 20px;
+  width: 100% !important;
 }
 
-.input-search input {
+.input-search-nav input {
   min-width: 600px;
   height: 40px;
   width: 100%;
   background-color: transparent;
-  border-color: rgb(184, 184, 184);
+  border-color: rgb(184, 184, 184) !important;
   border-radius: 10px;
   opacity: 0.6;
   color: #fff;
   margin-right: 15px;
   padding-left: 10px;
   font-weight: bold;
+  min-width: 258px !important;
+  width: 100% !important;
+}
+
+header button {
+  background-color: #fafafa45;
+  border: none;
+  border-radius: 10px;
+  padding: 3px 30px;
+  margin-right: 20px;
+  width: 200px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  transition: all ease 1s;
+  cursor: pointer;
+}
+
+header button:hover {
+  background-color: #fff;
 }

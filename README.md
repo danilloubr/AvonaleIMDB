@@ -1,3 +1,4 @@
+
 # Avonale IMDB
 
 Avonale IMDB é um projeto realizado para testar conhecimento técnico para uma vaga de Desenvolvedor Front End.
